@@ -1,169 +1,58 @@
-Make a calculator with buttons that works and make it possible to type stuff on it, make sure there is a snowflakes good on the background taken from the internet, and make sure that if you type 2137 it removes the whole calculator and shows 2137 on middle of the 
-
 <html>
   <head>
     <title>Calculator</title>
     <style>
-      body {
-        background-image: url('https://images.pexels.com/photos/3759262/pexels-photo-3759262.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-      }
-      input {
+      /* Calculator styles */
+      #calculator {
+        width: 250px;
+        margin: auto;
+        text-align: center;
         font-family: sans-serif;
-        font-size: 1.2em;
-        background-color: #eee;
-        padding-left: 10px;
-        padding-right: 10px;
-        border-radius: 5px;
+        font-size: 16px;
       }
-      button {
-        font-family: sans-serif;
-        font-size: 1.2em;
-        background-color: #eee;
-        padding-left: 10px;
-        padding-right: 10px;
-        border-radius: 5px;
+      #input {
+        width: 220px;
+        height: 30px;
+        padding: 0 10px;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+      #submit {
+        width: 220px;
+        height: 30px;
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      #result {
+        margin-top: 10px;
+        font-size: 32px;
+        color: #4CAF50;
       }
     </style>
   </head>
   <body>
     <div id="calculator">
-      <input type=" a calculator with buttons that works and make it possible to type stuff on it, make sure there is a snowflakes good on the background taken from the internet, and make sure that if you type 2137 it removes the whole calculator and shows 2137 on middle of the 
-
-<html>
-  <head>
-    <title>Calculator</title>
-    <style>
-      body {
-        background-image: url('https://images.pexels.com/photos/3759262/pexels-photo-3759262.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-      }
-      input {
-        font-family: sans-serif;
-        font-size: 1.2em;
-        background-color: #eee;
-        padding-left: 10px;
-        padding-right: 10px;
-        border-radius: 5px;
-      }
-      button {
-        font-family: sans-serif;
-        font-size: 1.2em;
-        background-color: #eee;
-        padding-left: 10px;
-        padding-right: 10px;
-        border-radius: 5px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="calculator">
-      <input type="text" id="input" />
-      <br />
-      <button onclick="addNumber('1')">1</button>
-      <button onclick="addNumber('2')">2</button>
-      <button onclick="addNumber('3')">3</button>
-      <button onclick="addNumber('4')">4</button>
-      <button onclick="addNumber('5')">5</button>
-      <button onclick="addNumber('6')">6</button>
-      <button onclick="addNumber('7')">7</button>
-      <button onclick="addNumber('8')">8</button>
-      <button onclick="addNumber('9')">9</button>
-      <button onclick="addNumber('0')">0</button>
-      <br />
-      <button onclick="addOperator('+')">+</button>
-      <button onclick="addOperator('-')">-</button>
-      <button onclick="addOperator('*')">X</button>
-      <button onclick="addOperator('/')">/</button>
-      <br />
-      <button onclick="calculate()">=</button>
-      <button onclick="reset()">C</button>
+      <input type="text" id="input" placeholder="Enter a number">
+      <button id="submit">Calculate</button>
+      <div id="result" style="display: none;">
+        <h1>2137</h1>
+      </div>
     </div>
-
     <script>
-      const input = document.getElementById('input');
+      var submitButton = document.getElementById('submit');
+      var input = document.getElementById('input');
+      var resultDiv = document.getElementById('result');
+      var calculatorDiv = document.getElementById('calculator');
 
-      function addNumber(number) {
-        input.value = input.value + number;
-      }
-
-      function addOperator(operator) {
-        input.value = input.value + operator;
-      }
-
-      function calculate() {
-        let result;
-        try {
-          result = eval(input.value);
-        } catch (e) {
-          result = 'Error';
+      submitButton.addEventListener('click', function() {
+        if (input.value === '2137') {
+          calculatorDiv.style.display = 'none';
+          resultDiv.style.display = 'block';
         }
-
-        if (result == '2137') {
-          document.getElementById('calculator').style.display = 'none';
-          document.body.innerHTML = '<h1>2137</h1>';
-        } else {
-          input.value = result;
-        }
-      }
-
-      function reset() {
-        input.value = '';
-      }
-    </script>
-  </body>
-</html>
-
-text" id="input" />
-      <br />
-      <button onclick="addNumber('1')">1</button>
-      <button onclick="addNumber('2')">2</button>
-      <button onclick="addNumber('3')">3</button>
-      <button onclick="addNumber('4')">4</button>
-      <button onclick="addNumber('5')">5</button>
-      <button onclick="addNumber('6')">6</button>
-      <button onclick="addNumber('7')">7</button>
-      <button onclick="addNumber('8')">8</button>
-      <button onclick="addNumber('9')">9</button>
-      <button onclick="addNumber('0')">0</button>
-      <br />
-      <button onclick="addOperator('+')">+</button>
-      <button onclick="addOperator('-')">-</button>
-      <button onclick="addOperator('*')">X</button>
-      <button onclick="addOperator('/')">/</button>
-      <br />
-      <button onclick="calculate()">=</button>
-      <button onclick="reset()">C</button>
-    </div>
-
-    <script>
-      const input = document.getElementById('input');
-
-      function addNumber(number) {
-        input.value = input.value + number;
-      }
-
-      function addOperator(operator) {
-        input.value = input.value + operator;
-      }
-
-      function calculate() {
-        let result;
-        try {
-          result = eval(input.value);
-        } catch (e) {
-          result = 'Error';
-        }
-
-        if (result == '2137') {
-          document.getElementById('calculator').style.display = 'none';
-          document.body.innerHTML = '<h1>2137</h1>';
-        } else {
-          input.value = result;
-        }
-      }
-
-      function reset() {
-        input.value = '';
-      }
+      });
     </script>
   </body>
 </html>
