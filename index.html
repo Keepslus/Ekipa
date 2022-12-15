@@ -1,18 +1,47 @@
 <html>
 <head>
-  <title>Calculator</title>
+  <title>Hub</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: sans-serif;
+      /* add styles for the body here */
+      background-color: #333;
+      color: #fff;
     }
     .container {
       max-width: 960px;
       margin: 0 auto;
       padding: 0 20px;
     }
+    .side-menu {
+      /* add styles for the side menu bar here */
+      width: 200px;
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      background-color: #fff;
+      box-shadow: 2px 0 6px rgba(0, 0, 0, 0.5);
+      /* add animation styles here */
+      animation-name: slideIn;
+      animation-duration: 0.5s;
+    }
+    .side-menu-item {
+      /* add styles for the menu items in the side menu bar here */
+      display: block;
+      padding: 10px 20px;
+      color: #333;
+      text-decoration: none;
+    }
+    .side-menu-item:hover {
+      /* add styles for menu item hover here */
+      background-color: #f5f5f5;
+    }
     .calculator-button {
+      /* add styles for the calculator button here */
+      margin-top: 20px;
       display: inline-block;
       border: none;
       padding: 10px 20px;
@@ -22,13 +51,27 @@
       cursor: pointer;
     }
     .calculator-image {
+      /* add styles for the calculator image here */
       height: 32px;
       vertical-align: middle;
+    }
+    /* add keyframes for the animation here */
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0);
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <div class="side-menu">
+      <a class="side-menu-item" href="calculator.html">Calculator</a>
+      <!-- add additional menu items here -->
+    </div>
     <button class="calculator-button" onclick="window.location.href = 'calculator.html';">
       <img src="calculator.png" class="calculator-image" alt="Calculator" />
     </button>
