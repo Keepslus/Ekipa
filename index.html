@@ -1,81 +1,77 @@
-//Make a calculator in html and CSS that looks realistic and insults you when you divide by 0 and when you type 2137 make it say żółw 
+Make a realistic calculator in html over a black background with snowflakes effects, make it say papież when you type 2137 in it and make sure that it is in middle of the screen!
 
-<!DOCTYPE html>
 <html>
-    <head>
-        <style>
-            body {
-                font-family: sans-serif;
-            }
-            #calculator {
-                width: 300px;
-                background-color: #ddd;
-                padding: 10px;
-                border-radius: 5px;
-            }
-            #output {
-                background-color: #eee;
-                font-size: 20px;
-                text-align: right;
-                padding: 10px;
-                margin: 0;
-            }
-            .btn {
-                background-color: #fff;
-                border: none;
-                padding: 10px;
-                font-size: 15px;
-                width: 70px;
-            }
-            .btn:hover {
-                background-color: #ddd;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="calculator">
-            <input type="text" id="output" readonly>
-            <br>
-            <button class="btn" onclick="calculate('7')">7</button>
-            <button class="btn" onclick="calculate('8')">8</button>
-            <button class="btn" onclick="calculate('9')">9</button>
-            <button class="btn" onclick="calculate('+')">+</button>
-            <br>
-            <button class="btn" onclick="calculate('4')">4</button>
-            <button class="btn" onclick="calculate('5')">5</button>
-            <button class="btn" onclick="calculate('6')">6</button>
-            <button class="btn" onclick="calculate('-')">-</button>
-            <br>
-            <button class="btn" onclick="calculate('1')">1</button>
-            <button class="btn" onclick="calculate('2')">2</button>
-            <button class="btn" onclick="calculate('3')">3</button>
-            <button class="btn" onclick="calculate('*')">*</button>
-            <br>
-            <button class="btn" onclick="calculate('C')">C</button>
-            <button class="btn" onclick="calculate('0')">0</button>
-            <button class="btn" onclick="calculate('=')">=</button>
-            <button class="btn" onclick="calculate('/')">/</button>
-        </div>
-        <script>
-            let expression = '';
-
-            function calculate(val) {
-                if (val === 'C') {
-                    expression = '';
-                } else if (val === '=') {
-                    try {
-                        expression = eval(expression);
-                    } catch (e) {
-                        expression = 'Error';
-                    }
-                } else {
-                    expression += val;
-                }
-                if (expression == 2137) {
-                    expression = 'żółw';
-                }
-                document.getElementById('output').value = expression;
-            }
-        </script>
-    </body>
+  <head>
+    <title>Realistic Calculator</title>
+    <style>
+      body {
+        background-color: #000000;
+      }
+      #calculator-container {
+        width: 250px;
+        height: 250px;
+        margin: auto;
+        padding-top: 20px;
+        text-align: center;
+      }
+      #calculator-screen {
+        width: 200px;
+        height: 50px;
+        margin: auto;
+        background-color: #FFFFFF;
+        text-align: center;
+        font-size: 30px;
+        color: #000000;
+        border: 2px solid #000000;
+        padding: 10px;
+      }
+      #calculator {
+        width: 200px;
+        margin: auto;
+      }
+      .calc-btn {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        background-color: #FFFFFF;
+        text-align: center;
+        color: #000000;
+        border: 2px solid #000000;
+        padding: 10px;
+      }
+      #calculator-container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('snowflakes.gif');
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="calculator-container">
+      <div id="calculator-screen">0</div>
+      <div id="calculator">
+        <button class="calc-btn" onclick="document.getElementById('calculator-screen').innerHTML='7'">7</button>
+        <button class="calc-btn" onclick="document.getElementById('calculator-screen').innerHTML='8'">8</button>
+        <button class="calc-btn" onclick="document.getElementById('calculator-screen').innerHTML='9'">9</button>
+        <button class="calc-btn" onclick="document.getElementById('calculator-screen').innerHTML='4'">4</button>
+        <button class="calc-btn" onclick="document.getElementById('calculator-screen').innerHTML='5'">5</button>
+        <button class="calc-btn" onclick="document.getElementById('calculator-screen').innerHTML='6'">6</button>
+        <button class="calc-btn" onclick="document.getElementById('calculator-screen').innerHTML='1'">1</button>
+        <button class="calc-btn" onclick="document.getElementById('calculator-screen').innerHTML='2'">2</button>
+        <button class="calc-btn" onclick="document.getElementById('calculator-screen').innerHTML='3'">3</button>
+        <button class="calc-btn" onclick="document.getElementById('calculator-screen').innerHTML='0'">0</button>
+        <button class="calc-btn" onclick="document.getElementById('calculator-screen').innerHTML='2137'">2137</button>
+      </div>
+    </div>
+    <script>
+      if (document.getElementById('calculator-screen').innerHTML == '2137') {
+        document.getElementById('calculator-screen').innerHTML = 'Papież';
+      }
+    </script>
+  </body>
 </html>
