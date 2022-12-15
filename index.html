@@ -35,11 +35,9 @@
   </head>
   <body>
     <div id="calculator">
-      <input type="text" id="input" placeholder="Enter a number">
+      <input type="text" id="input" placeholder="Enter a number or phrase">
       <button id="submit">Calculate</button>
-      <div id="result" style="display: none;">
-        <h1>2137</h1>
-      </div>
+      <div id="result" style="display: none;"></div>
     </div>
     <script>
       var submitButton = document.getElementById('submit');
@@ -47,9 +45,24 @@
       var resultDiv = document.getElementById('result');
       var calculatorDiv = document.getElementById('calculator');
 
+      // Array of insults to choose from
+      var insults = [
+        'You are a waste of oxygen.',
+        'You are an embarrassment to your family.',
+        'You have the intelligence of a rock.',
+        'You are a failure in life.',
+        'You are a disgrace to humanity.'
+      ];
+
       submitButton.addEventListener('click', function() {
+        // If the user enters "2137", search for it on Google
         if (input.value === '2137') {
+          window.open('https://www.google.com/search?q=2137');
+        }
+        // If the user enters "nudze sie", display a random insult
+        else if (input.value === 'nudze sie') {
           calculatorDiv.style.display = 'none';
+          resultDiv.innerHTML = insults[Math.floor(Math.random() * insults.length)];
           resultDiv.style.display = 'block';
         }
       });
