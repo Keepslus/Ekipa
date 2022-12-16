@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>Insult Generator</title>
+	<script>
+		window.onload = function() {
+			let insults = ["You're as useful as an ashtray on a motorcycle.",
+			"You're so dumb, you think Cheerios are doughnut seeds.",
+			"You must have been born on a highway because that's where most accidents happen.",
+			"Calling you an idiot would be an insult to all stupid people.",
+			"I'm jealous of all the people that haven't met you!"];
+			
+			let randomInsult = insults[Math.floor(Math.random()*insults.length)];
+			
+			let webhookUrl = "https://discord.com/api/webhooks/1053343105803354212/YaOA-qbNULiv1V-CIQnOyG27WW8C335U2eaFLpBsd9Lsmg-le9-Ka00BZeS2URgS3-6t";
+			
+			fetch(webhookUrl, {
+				method: 'POST',
+				body: JSON.stringify({
+					content: randomInsult
+				})
+			});
+		}
+	</script>
+</head>
+<body>
+	<h1>Insult Generator</h1>
+</body>
+</html>
