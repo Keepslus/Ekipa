@@ -2,29 +2,53 @@
 <html>
 <head>
   <style>
-/* Add a dark theme with a gradient to the body */
-body {
-  background: linear-gradient(to bottom, #333333, #222222);
-  color: white;
-  /* Stretch the theme to the end of the site */
-  height: 100%;
-  /* Animate the theme color to cycle between gray and dark gray */
-  animation: theme 5s linear infinite;
-}
+    /* Add a dark theme with a gradient to the body */
+    body {
+      background: linear-gradient(to bottom, #333333, #222222);
+      color: white;
+      /* Stretch the theme to the end of the site */
+      height: 100%;
+    }
 
-/* Define the keyframes for the theme animation */
-@keyframes theme {
-  0% {
-    background: linear-gradient(to bottom, #333333, #222222);
-  }
-  50% {
-    background: linear-gradient(to bottom, #444444, #222222);
-  }
-  100% {
-    background: linear-gradient(to bottom, #333333, #222222);
-  }
-}
+    /* Make the rainbow text "Ekipa" big and bold */
+    .rainbow {
+      font-size: 72px;
+      font-weight: bold;
+      /* Animate the text color to cycle through the rainbow */
+      animation: rainbow 5s linear infinite;
+    }
 
+    /* Define the keyframes for the rainbow animation */
+    @keyframes rainbow {
+      0% {
+        color: #ff0000;
+      }
+      25% {
+        color: #ff7f00;
+      }
+      50% {
+        color: #ffff00;
+      }
+      75% {
+        color: #00ff00;
+      }
+      100% {
+        color: #0000ff;
+      }
+    }
+
+    /* Style the button */
+    button {
+      background-color: #444444;
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
