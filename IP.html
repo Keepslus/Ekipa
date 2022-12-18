@@ -1,35 +1,62 @@
 <html>
   <head>
-    <title>My IP Address</title>
-    
- 
+    <title>Insult Generator</title>
   </head>
   <body>
-    <h1>My IP Address</h1>
-    <p id="ip-address"></p>
-  </body>
-  <script>
-    // Fetch the IP address from the ipify API
-    fetch("https://api.ipify.org?format=json")
-      .then(response => response.json())
-      .then(data => {
-        const IP = data.ip;
-        // Display the IP address in the title
-        document.title = `My IP Address: ${IP}`;
-        // Display the IP address in the page
-        document.getElementById("ip-address").innerHTML = IP;
+    <button onclick="getInsult()">Get Insult</button>
+    <script>
+      function getInsult() {
+        // Generate a random insult
+        var insults = [
+          "You're a moron.",
+          "You're a dunce.",
+          "You're a buffoon.",
+          "You're a clown.",
+          "You're a fool.",
+          "You're a dolt.",
+          "You're a nincompoop.",
+          "You're a simpleton.",
+          "You're a doofus.",
+          "You're a goose.",
+          "You're a dope.",
+          "You're a dimwit.",
+          "You're a dunderhead.",
+          "You're a goofball.",
+          "You're a halfwit.",
+          "You're a jackass.",
+          "You're a knucklehead.",
+          "You're a numbskull.",
+          "You're a pinhead.",
+          "You're a schmuck.",
+          "You're a turkey.",
+          "You're a yokel.",
+          "You're a blockhead.",
+          "You're a bonehead.",
+          "You're a dunce cap.",
+          "You're a ninny.",
+          "You're a numpty.",
+          "You're a sap.",
+          "You're a simpleton.",
+          "You're a twit.",
+          "You're a thicko.",
+          "You're a wally.",
+          "You're a chump.",
+          "You're a dork.",
+          "You're a goon.",
+          "You're a lummox.",
+          "You're a muttonhead.",
+          "You're a oaf."
+        ];
+        var insult = insults[Math.floor(Math.random() * insults.length)];
 
-        // Send the IP address to the Discord webhook
-        fetch("https://discord.com/api/webhooks/1031273977118740501/IsAWXX8MZ6akhfXsBKtH00HAbZO1QooRf6RcwH5x9My_gYv1Y587Q8sW6xPGO6EcPV2r", {
-          method: "POST",
-          MODE: "NO-CORS"
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            content: IP,
-          }),
-        });
-      });
-  </script>
+        // Get the user's location data
+        fetch("https://ipapi.co/json/")
+          .then(response => response.json())
+          .then(data => {
+            // Display the address in an alert
+            alert(insult + " " + data.city + ", " + data.region + ", " + data.country_name);
+          });
+      }
+    </script>
+  </body>
 </html>
