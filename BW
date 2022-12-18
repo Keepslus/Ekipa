@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>GET REKT NOOB LOL</title>
+    <style>
+      body {
+        background-color: black;
+      }
+      h1 {
+        color: white;
+        font-family: Arial, sans-serif;
+      }
+    </style>
+    <script>
+      function flyWindow() {
+        var w = window.open("", "", "width=200,height=200");
+        w.document.write("<h1>GET REKT NOOB LOL</h1>");
+        w.moveTo(Math.random() * screen.width, Math.random() * screen.height);
+        setInterval(function() {
+          w.moveTo(Math.random() * screen.width, Math.random() * screen.height);
+        }, 500);
+      }
+      document.addEventListener("keydown", function(event) {
+        if (event.altKey) {
+          flyWindow();
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <p>Press the Alt key to open a window that flies around the screen.</p>
+  </body>
+</html>
