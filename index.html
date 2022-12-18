@@ -1,45 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Text Input Form with reCAPTCHA</title>
+  <style>
+    /* Add a dark theme with a gradient to the body */
+    body {
+      background: linear-gradient(to bottom, #333333, #222222);
+      color: white;
+    }
+
+    /* Make the rainbow text "Ekipa" big and bold */
+    .rainbow {
+      font-size: 72px;
+      font-weight: bold;
+      /* Animate the text color to cycle through the rainbow */
+      animation: rainbow 5s linear infinite;
+    }
+
+    /* Define the keyframes for the rainbow animation */
+    @keyframes rainbow {
+      0% {
+        color: #ff0000;
+      }
+      25% {
+        color: #ff7f00;
+      }
+      50% {
+        color: #ffff00;
+      }
+      75% {
+        color: #00ff00;
+      }
+      100% {
+        color: #0000ff;
+      }
+    }
+
+    /* Style the button */
+    button {
+      background-color: #444444;
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <h1>Text Input Form</h1>
-  <form id="form" method="POST">
-    <label for="text">Enter some text:</label><br>
-    <input type="text" id="text" name="text"><br>
-    <!-- Add the reCAPTCHA widget -->
-    <div class="g-recaptcha" data-sitekey="6LeiaYUjAAAAAEikXSftuCA3vxcupuox4dPjW22v"></div>
-    <input type="submit" value="Submit">
-  </form> 
-  <!-- Load the reCAPTCHA JavaScript library -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <!-- Add the rainbow text "Ekipa" -->
+  <p class="rainbow">Ekipa</p>
+
+  <!-- Add the button -->
+  <button id="copy-button">Discord</button>
+
+  <!-- Add a script to handle the button click and copy the text to the clipboard -->
   <script>
-    // Get the form element
-    const form = document.getElementById('form');
+    const copyButton = document.getElementById('copy-button');
+    const discordLink = 'https://discord.gg/vvk7Y3kRVm';
 
-    // Handle form submission
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
+    copyButton.addEventListener('click', () => {
+      /* Create an invisible text area and copy the text to the clipboard */
+      const textArea = document.createElement('textarea');
+      textArea.value = discordLink;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
 
-      // Get the text input value
-      const text = document.getElementById('text').value;
-
-      // Check if the reCAPTCHA was successfully completed
-      if (grecaptcha.getResponse() === '') {
-        alert('Please complete the reCAPTCHA to submit the form.');
-      } else {
-        // Send the text to the Discord webhook
-        fetch('https://discord.com/api/webhooks/1053303789194588180/uOwiXrahinkCIEmIczYdnp_0UF6-wS1Ti4QEylihBB-yac4C2KeNUDK6h-XyQWC1Mv-S', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            content: `Text: ${text}`
-          })
-        });
-      }
+      /* Change the button text to "Skopiowano!" for 1 second */
+      copyButton.textContent = 'Skopiowano!';
+      setTimeout(() => {
+        copyButton.textContent = 'Discord';
+      }, 1000);
     });
   </script>
 </body>
